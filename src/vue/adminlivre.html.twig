@@ -1,0 +1,209 @@
+{% extends "administrationbase.html.twig" %}
+{% block title %}
+  {{ parent() }}
+  livre
+{% endblock %}
+{% block activeLI %}active{% endblock %}
+
+{% block contenu %}
+    
+      {%  if liste %}
+      <a href="index.php?page=ajoutlivre">
+        <button type="button" name="button" class="btnblue" style="  position: absolute;
+      right: 20px;">Ajouter</button>
+      </a>
+      {% endif %}
+    <div class="textcenter" style="max-width:700px;  display: block;
+            margin-left: auto;
+            margin-right: auto;">
+            <h3 id="borderTitre" style="padding:1em 2em; margin-top:0em">Liste des livres de Légendarium</h3>
+          </div>
+    
+    
+    
+    <div class="table-responsive">
+ <table class="table">
+  <caption>List of users</caption>
+  <thead>
+    <tr>
+         <th scope="col">Id</th>
+                <th scope="col">Couverture</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Editeur</th>
+                <th scope="col">Date</th>
+                <th scope="col">Isbn</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Disponibilité</th>
+                <th scope="col">Collection</th>
+                <th scope="col">Genre</th>
+                <th scope="col">J'aime</th>
+                <th scope="col">Coup de coeur</th>
+                <th scope="col">Modif</th>
+                <th scope="col">Trash</th>
+    </tr>
+  </thead>
+  <tbody>
+   {%  if liste %}
+              {% for l in liste %}
+
+                <tr>
+                  <th scope="row">#{{ l.id }}</th>
+                  <td><img src="{{ l.couverture }}" alt="{{ l.titre }}" style=" height: 75px;">
+                  </td>
+                  <td>{{ l.titre }}</td>
+                  <td>{{ l.nomauteur }}.{{ l.prenomauteur }}</td>
+                  <td>{{ l.nomediteur }}</td>
+                  <td>{{ l.datelivre }}</td>
+                  <td>{{ l.isbn }}</td>
+                  <td>{{ l.prix }}€</td>
+                  <td>{{ l.libelledisponibilite }}</td>
+                  <td>{{ l.libellecollection }}</td>
+                  <td>{{ l.libellegenre }}</td>
+                  <td>{{ l.jaime }}</td>
+                  <td>{{ l.libellecoupdecoeur }}</td>
+                  <td>
+                    <a href="#">
+                      <i class="fas fa-edit icon"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="index.php?page=adminlivre&id={{l.id}}">
+                      <i class="fas fa-trash icon"></i>
+                    </a>
+
+                  </td>
+                  <td>  <label class="checkbox">
+                      <input type="checkbox" name="cocher[]" id="cocher[]" value="{{l.id}}"/>
+                      <span class="default"></span>
+                    </label></td>
+                </tr>
+
+              {% endfor %}
+              {% else %}
+              <tr>
+                <th scope="row">#</th>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                  <td></td>
+              </tr>
+             {% endif %}
+  </tbody>
+</table>
+</div>
+    <!--
+    <div class="table-responsive">
+        
+
+     <form action="index.php?page=adminlivre" method="post" enctype="application/x-www-form-urlencoded">
+          
+<table class="table">
+  <thead class="thead-color">
+    <tr>
+      <th scope="col">Id</th>
+                <th scope="col">Couverture</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Editeur</th>
+                <th scope="col">Date</th>
+                <th scope="col">Isbn</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Disponibilité</th>
+                <th scope="col">Collection</th>
+                <th scope="col">Genre</th>
+                <th scope="col">J'aime</th>
+                <th scope="col">Coup de coeur</th>
+                <th scope="col">Modif</th>
+                <th scope="col">Trash</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%  if liste %}
+              {% for l in liste %}
+
+                <tr>
+                  <th scope="row">#{{ l.id }}</th>
+                  <td><img src="{{ l.couverture }}" alt="{{ l.titre }}" style=" height: 75px;">
+                  </td>
+                  <td>{{ l.titre }}</td>
+                  <td>{{ l.nomauteur }}.{{ l.prenomauteur }}</td>
+                  <td>{{ l.nomediteur }}</td>
+                  <td>{{ l.datelivre }}</td>
+                  <td>{{ l.isbn }}</td>
+                  <td>{{ l.prix }}€</td>
+                  <td>{{ l.libelledisponibilite }}</td>
+                  <td>{{ l.libellecollection }}</td>
+                  <td>{{ l.libellegenre }}</td>
+                  <td>{{ l.jaime }}</td>
+                  <td>{{ l.libellecoupdecoeur }}</td>
+                  <td>
+                    <a href="#">
+                      <i class="fas fa-edit icon"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <a href="index.php?page=adminlivre&id={{l.id}}">
+                      <i class="fas fa-trash icon"></i>
+                    </a>
+
+                  </td>
+                  <td>  <label class="checkbox">
+                      <input type="checkbox" name="cocher[]" id="cocher[]" value="{{l.id}}"/>
+                      <span class="default"></span>
+                    </label></td>
+                </tr>
+
+              {% endfor %}
+              {% else %}
+              <tr>
+                <th scope="row">#</th>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                <td>Vide</td>
+                  <td></td>
+              </tr>
+             {% endif %}
+  </tbody>
+</table>
+     </form>
+
+</div>
+-->
+
+          <div class="textcenter" style="max-width:700px;  display: block;
+            margin-left: auto;
+            margin-right: auto;">
+{%  if liste %}
+            <button  class="btnblue" type="submit" name="btSupprimer">Supprimer</button>
+            {% else %}
+
+              <button  class="btnblue" type="submit" name="btAjout" formaction="index.php?page=ajoutlivre">Ajouter</button>
+              {% endif %}
+          </div>
+
+
+        </form>
+      </div>
+
+{% endblock %}

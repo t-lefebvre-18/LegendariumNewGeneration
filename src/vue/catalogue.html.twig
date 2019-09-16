@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }}Collections {% endblock %}
+{% block activeCL %}active{% endblock %}
+{% block contenu %}
+  <div class="container">
+    <div class="textcenter">
+      <h3 id="borderTitre" style="padding:1.5rem 1rem;">Liste des collections
+      </h3>
+    </div>
+    <hr/>
+    {% for c in listecatalogue %}
+      <h3 style="padding:1em 0em 0em 1em">Collections :
+        {{ c.libellecollection }}</h3>
+      {% if liste %}
+      <a href="index.php?page=collection">
+        <button type="button" name="button" class="btnblue" style=" position: absolute;right: 4em;">plus</button>
+      </a>
+        <div class="testimonial-section">
+          <div class="inner-width">
+            <div class="slides owl-carousel">
+              {% for l in liste %}
+                <a href="index.php?page=livre&id={{ l.id }}">
+                  <div class="testimonial">
+                    <img src="{{ l.couverture }}" width="auto" height="100%">
+                  </div>
+                </a>
+
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+      {% else %}
+        <h4 class="textcenter">Il n'y a aucun livre dans cette collections</h4>
+        <hr/>
+      {% endif %}
+
+    {% else %}
+      <h4 class="textcenter">Il n'y a aucune collections</h4>
+      <hr/>
+    {% endfor %}
+
+    <script type="text/javascript">
+      $(".owl-carousel").owlCarousel({
+        margin: 10,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          670: {
+            items: 2
+          },
+          780: {
+            items: 3
+          },
+          1000: {
+            items: 2
+          },
+          1250: {
+            items: 3
+          },
+          1550: {
+            items: 4
+          },
+          1850: {
+            items: 5
+          }
+        }
+      });
+    </script>
+</div>
+
+{% endblock %}

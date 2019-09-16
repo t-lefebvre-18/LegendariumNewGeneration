@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+{% block title %}
+  {{ parent() }}
+  Accueil
+{% endblock %}
+{% block activeAC %}active{% endblock %}
+{% block contenu %}
+
+  <div class="container ">
+    <div class="textcenter">
+      <h3 id="borderTitre" style="padding:1.5rem 1rem;">Messages de bienvenue sur legendarium</h3>
+      <p>Légendarium est une librairie spécialisée en littérature de l'imaginaire: Science-Fiction, Fantasy, Fantastique, Thriller... située à Arras</p>
+    </div>
+    <hr/>
+    <h3 style="padding:1em">Nos Nouveautés</h3>
+
+    {% if liste %}
+      <div class="testimonial-section">
+        <div class="inner-width">
+          <div class="slides owl-carousel">
+            {% for l in liste %}
+              {% if l.id > 0 %}
+
+                <a href="index.php?page=livre&id={{ l.id }}">
+                  <div class="testimonial">
+                    <img src="{{ l.couverture }}">
+                  </div>
+                </a>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+      <hr/>
+    {% else %}
+      <h4 class="textcenter">Il n'y a aucun livre</h4>
+      <hr/>
+    {% endif %}
+
+    <h2 style="padding:1em">Nos coup de coeur</h2>
+    {% if liste %}
+
+      <div class="testimonial-section ">
+        <div class="inner-width">
+          <div class="slides owl-carousel ">
+            {% for l in liste %}
+              {% if l.idcoupdecoeur == 1 %}
+
+                <a href="index.php?page=livre&id={{ l.id }}">
+                  <div class="testimonial">
+                    <img src="{{ l.couverture }}">
+                  </div>
+                </a>
+              {% endif %}
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <hr/>
+    {% else %}
+      <h4 class="textcenter">Il n'y a aucun livre</h4>
+      <hr/>
+    {% endif %}
+
+    <script type="text/javascript">
+      $(".owl-carousel").owlCarousel({
+        margin: 0,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          670: {
+            items: 2
+          },
+          780: {
+            items: 3
+          },
+          1000: {
+            items: 2
+          },
+          1250: {
+            items: 3
+          },
+          1550: {
+            items: 4
+          },
+          1850: {
+            items: 5
+          }
+        }
+      });
+    </script>
+
+  </div>
+
+{% endblock %}

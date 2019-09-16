@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title></title>
+  </head>
+  <body style="height: 100vh">
+    {% if form.valide is defined %}
+      {% if form.valide == true %}
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+            <div id="borderCadre" style="margin-top:5%;width:1000px;max-width:1000px">
+              <div class="card card-bk">
+                <div class="card card-bk">
+                  <div class="btn_exit">
+                    <a href="index.php">
+                      <i class="fas fa-times icon fa-lg"></i>
+                    </a>
+                  </div>
+                  <div class="textcenter">
+                    <h3 id="borderTitre" style="padding:1em 2em; margin-top:1em">Inscrivez-vous sur Légendarium</h3>
+                  </div>
+
+                  <!-- <div class="col-2 textcenter"> <a href="index.php"> <i class="fas fa-times icon fa-lg"></i> </a> </div> -->
+
+                  <div class="container-fluid" style="padding-left: 5rem;padding-right: 5rem;padding-bottom: 2rem;padding-top: 2rem">
+                    <div class="row">
+
+                      <div class="container " id="borderContenu" style="padding: 3rem">
+                        <h5 class="textcenter">Inscription réussie !</h5>
+                        <h5 class="textcenter">Voici votre identifiant :
+                          {{form.email}}</h5>
+
+                      </div>
+                      <div class="container-fluid textcenter" style="padding-top: 3rem;">
+                        <p>Retourner sur la page index !<a href="index.php">
+                            <button type="button" class="btnblue">Retour</button>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        {% else %}
+          <div class="container-fluid">
+            <div class="row justify-content-md-center">
+              <div id="borderCadre" style="margin-top:5%; width:1000px;max-width:1000px">
+                <div class="card card-bk">
+                  <div class="btn_exit">
+                    <a href="index.php">
+                      <i class="fas fa-times icon fa-lg"></i>
+                    </a>
+                  </div>
+                  <div class="textcenter">
+                    <h3 id="borderTitre" style="padding:1em 2em; margin-top:1em">Inscrivez-vous sur Légendarium</h3>
+                  </div>
+
+                  <div class="container-fluid" style="padding-left: 5rem;padding-right: 5rem;padding-bottom: 2rem;padding-top: 2rem">
+                    <div class="row">
+
+                      <div class="container " id="borderContenu" style="padding: 3rem">
+                        <form class="form-signin" action="index.php?page=inscrire" method="post" enctype="application/x-www-form-urlencoded">
+
+                          <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your Email">
+                            <i class="fas fa-envelope icon"></i>
+                            <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Enter email" required="required" autofocus="autofocus">
+                          </div>
+
+                          <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your Password">
+                            <i class="fas fa-lock icon"></i>
+                            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Enter Mot de passe" required="required" autofocus="autofocus">
+                          </div>
+
+                          <div class="input-container" style="padding-top:0.5em" data-validate="Please Confirmation mot de passe">
+                            <i class="fas fa-key icon"></i>
+                            <input type="password" id="inputPassword2" name="inputPassword2" class="form-control" placeholder="Confirmation mot de passe" required="required" autofocus="autofocus">
+                          </div>
+
+                          <div class="input-container" style="padding-top:0.5em" data-validate="Please enter yout nom">
+                            <i class="fas fa-user icon"></i>
+                            <input type="text" id="nom" name="nom" class="form-control" placeholder="Enter nom" required="required" autofocus="autofocus">
+                          </div>
+
+                          <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your prenom">
+                            <i class="fas fa-user-friends icon"></i>
+                            <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Enter prenom" required="required" autofocus="autofocus">
+                          </div>
+
+                          <input type="hidden" name="role" value="2"/>
+                          <br>
+                          <div class="alert alert-danger" role="alert" style="color:rgb(231,76,60)">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Echec de l'inscription !</h4>
+                            <p>{{ form.message }}</p>
+                            <hr>
+                            <p class="mb-0">Les alertes sont là pour vous indiquer d'éventuel problème ou erreur !</p>
+
+                          </div>
+
+                          <div class="container-fluid textcenter">
+                            <button type="submit" class="btnblue" name="btInscrire">S'inscrire</button>
+
+                          </div>
+
+                        </form>
+
+                      </div>
+                      <div class="container-fluid textcenter" style="padding-top: 3rem;">
+                        <p>J'ai déja un compte !<a href="index.php?page=connexion">
+                            <button type="button" class="btnblue">Login</button>
+                          </a>
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        {% endif %}
+
+      {% else %}
+
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+            <div id="borderCadre" style="margin-top:5%; width:1000px;max-width:1000px">
+              <div class="card card-bk">
+                <div class="btn_exit">
+                  <a href="index.php">
+                    <i class="fas fa-times icon fa-lg"></i>
+                  </a>
+                </div>
+                <div class="textcenter" >
+                  <h3 id="borderTitre" style="padding:1em 2em; margin-top:1em">Inscrivez-vous sur Légendarium</h3>
+                </div>
+
+                <div class="container-fluid" style="padding-left: 5rem;padding-right: 5rem;padding-bottom: 2rem;padding-top: 2rem">
+                  <div class="row">
+
+                    <div class="container " id="borderContenu" style="padding: 3rem">
+                      <form class="form-signin" action="index.php?page=inscrire" method="post" enctype="application/x-www-form-urlencoded">
+
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your Email">
+                          <i class="fas fa-envelope icon">&nbsp;&nbsp;Email</i>
+                          <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Enter email" required="required" autofocus="autofocus">
+                        </div>
+
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your Password">
+                          <i class="fas fa-lock icon">&nbsp;&nbsp;Mots de passe</i>
+                          <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Enter Mot de passe" required="required" autofocus="autofocus">
+                        </div>
+
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please Confirmation mot de passe">
+                          <i class="fas fa-key icon">&nbsp;&nbsp;Confirmation du mots de passe</i>
+                          <input type="password" id="inputPassword2" name="inputPassword2" class="form-control" placeholder="Confirmation mot de passe" required="required" autofocus="autofocus">
+                        </div>
+
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please enter yout nom">
+                          <i class="fas fa-user icon">&nbsp;&nbsp;Nom</i>
+                          <input type="text" id="nom" name="nom" class="form-control" placeholder="Enter nom" required="required" autofocus="autofocus">
+                        </div>
+
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your prenom">
+                          <i class="fas fa-user-friends icon">&nbsp;&nbsp;Prénom</i>
+                          <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Enter prenom" required="required" autofocus="autofocus">
+                        </div>
+
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your prenom">
+                          <i class="fas fa-calendar-alt">&nbsp;&nbsp;Date du jour</i>
+                          <input id="dateCrea" type="date" name="dateCrea" class="form-control" value="" readonly>
+                            <script>
+                              document.getElementById("dateCrea").valueAsDate = new Date();
+                            </script>
+                          </div>
+
+
+
+                        <input type="hidden" name="role" value="2"/>
+
+
+                        <div class="container-fluid textcenter">
+                          <button type="submit" class="btnblue" name="btInscrire">S'inscrire</button>
+
+                        </div>
+
+                      </form>
+
+                    </div>
+                    <div class="container-fluid textcenter" style="padding-top: 3rem;">
+                      <p>J'ai déja un compte !<a href="index.php?page=connexion">
+                          <button type="button" class="btnblue">Login</button>
+                        </a>
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      {% endif %}
+
+    </body>
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/jquery3.2.1.min.js"><\/script>')
+  </script>
+  <script src="js/bootstrap.min.js"></script>
+
+</html>

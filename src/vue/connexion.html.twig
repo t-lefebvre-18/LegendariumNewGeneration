@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title></title>
+  </head>
+  <body style="height: 100vh">
+    {% if form.valide is defined %}
+      {% if form.valide == true %}
+
+      {% else %}
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+            <div id="borderCadre" style="margin-top:5%;width:1000px;max-width:1000px">
+              <div class="card card-bk">
+                <div class="btn_exit">
+                  <a href="index.php">
+                    <i class="fas fa-times icon fa-lg"></i>
+                  </a>
+                </div>
+                <div class="textcenter">
+                  <h3 id="borderTitre" style="padding:1em 2em; margin-top:1em">Connecter-vous à votre compte</h3>
+                </div>
+
+                <div class="container-fluid" style="padding-left: 5rem;padding-right: 5rem;padding-bottom: 2rem;padding-top: 2rem">
+                  <div class="row">
+
+                    <div class="container " id="borderContenu" style="padding: 3rem">
+                      <form class="form-signin" method="post">
+                        <div >
+                          <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your Email">
+                            <i class="fas fa-user icon"></i>
+
+                            <input type="email" id="inputEmail " name="inputEmail" class="form-control" placeholder="Enter email" required="required" autofocus="autofocus">
+
+                          </div>
+                          <div class="input-container " style="padding-top:0.5em" data-validate="Please enter your Password">
+
+                            <i class="fas fa-lock icon"></i>
+
+                            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="required">
+
+                          </div>
+
+                        </div>
+                        <br>
+                        <div class="alert alert-danger" role="alert" style="color:rgb(231,76,60)">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="alert-heading">Echec de la connexion !</h4>
+                          <p>Email ou mots de passe invalide !</p>
+                          <hr>
+                          <p class="mb-0">Les alertes sont là pour vous indiquer d'éventuel problème ou erreur !</p>
+
+                        </div>
+
+                        <div class="container-fluid textcenter" style="padding-top: 2rem">
+                          <button type="submit" class="btnblue" name="btConnecter">Log in</button>
+
+                        </div>
+                      </form>
+
+                    </div>
+                    <div class="container-fluid textcenter" style="padding-top: 3rem;">
+                      <p>New to legendarium?<a href="index.php?page=inscrire">
+                          <button type="button" class="btnblue">Sign Up</button>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      {% endif %}
+
+    {% else %}
+
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <div id="borderCadre" style="margin-top:5%; width:1000px;max-width:1000px">
+            <div class="card card-bk">
+              <div class="btn_exit">
+                <a href="index.php">
+                  <i class="fas fa-times icon fa-lg"></i>
+                </a>
+              </div>
+              <div class="textcenter">
+                <h3 id="borderTitre" style="padding:1em 2em; margin-top:1em">Connecter-vous à votre compte</h3>
+              </div>
+
+              <div class="container-fluid" style="padding-left: 5rem;padding-right: 5rem;padding-bottom: 2rem;padding-top: 2rem">
+                <div class="row">
+
+                  <div class="container " id="borderContenu" style="padding: 3rem">
+                    <form class="form-signin" method="post">
+                      <div >
+                        <div class="input-container" style="padding-top:0.5em" data-validate="Please enter your Email">
+                          <i class="fas fa-user icon"></i>
+
+                          <input type="email" id="inputEmail " name="inputEmail" class="form-control" placeholder="Enter email" required="required" autofocus="autofocus">
+
+                        </div>
+                        <div class="input-container " style="padding-top:0.5em" data-validate="Please enter your Password">
+
+                          <i class="fas fa-lock icon"></i>
+
+                          <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="required">
+
+                        </div>
+                      </div>
+
+                      <div class="container-fluid textcenter" style="padding-top: 2rem">
+                        <button type="submit" class="btnblue" name="btConnecter">Log in</button>
+
+                      </div>
+                    </form>
+
+                  </div>
+                  <div class="container-fluid textcenter" style="padding-top: 3rem;">
+                    <p>New to legendarium?<a href="index.php?page=inscrire">
+                        <button type="button" class="btnblue">Sign Up</button>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    {% endif %}
+
+  </body>
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  window.jQuery || document.write('<script src="js/jquery3.2.1.min.js"><\/script>')
+</script>
+<script src="js/bootstrap.min.js"></script>
+
+</html>

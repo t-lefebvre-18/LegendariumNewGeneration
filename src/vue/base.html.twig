@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+
+    <title>
+      {% block title %}
+        Légendarium -
+      {% endblock %}
+    </title>
+    {% block style %}{% endblock %}
+
+  </head>
+  <body >
+
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-custom">
+  <a class="navbar-brand" href="index.php">LégendariuM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {% block activeAC %}{% endblock %}">
+        <a class="nav-link" href="index.php">Accueil</a>
+      </li>
+      <li class="nav-item {% block activeCL %}{% endblock %}">
+        <a class="nav-link " href="index.php?page=catalogue">Collections</a>
+      </li>
+      <li class="nav-item {% block activeCT %}{% endblock %}">
+        <a class="nav-link" href="index.php?page=contact">Contact</a>
+      </li>
+      <li class="nav-item {% block activeMS %}{% endblock %}">
+        <a class="nav-link" href="index.php?page=mentions">Mentions legales</a>
+      </li>
+
+    </ul>
+    {% if session.login is defined %}
+      <ul class="navbar-nav ">
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+            <!-- image profile option <img src="images/images.png" alt="Bootstrap" style="width:35px; height:35px ;"> -->
+          </a>
+          <div class="dropdown-menu dropdown-menu-right drop-color" aria-labelledby="navbarDropdown">
+            <h6 class="dropdown-header">{{session.login}}</h6>
+            <a class="dropdown-item" href="#index.php?page=profil">
+              <i class="fas fa-user-cog">&nbsp;</i>&nbsp;Paramètres du compte</a>
+            {% if session.role == 1 %}
+              <a class="dropdown-item" href="index.php?page=administration">
+                <i class="fas fa-server">&nbsp;</i>&nbsp;Paramètres d'administration</a>
+            {% else %}
+              <a class="dropdown-item" href="#index.php?page=panier">
+                <i class="fas fa-shopping-basket">&nbsp;</i>&nbsp;Mon panier</a>
+              {% endif %}
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="index.php?page=deconnexion">
+              <i class="fas fa-sign-out-alt">&nbsp;</i>&nbsp;Déconnexion</a>
+          </div>
+        </li>
+      </ul>
+    {% else %}
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=connexion">Connexion</a>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+    <main role="main">
+
+      {% block body %}
+
+
+
+<div class="container-fluid size-div" >
+  <div class="row space-row" style=" height: 100%;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4	col-xl-4 space">
+      <div style="height: 100%;" id="borderCadre" >
+        <div class="card card-bk" style="padding:.5em;height: 100%;">
+        {% block administration %}{% endblock %}
+        <div class="textcenter">
+            <h3 id="borderTitre" style="padding:1.5rem 1rem;">Liste des événements</h3>
+        </div>
+
+          {% for e in listeevent %}
+
+            <div>
+              <h5 class="textcenter">{{ e.titre }}</h5>
+              <img src="{{ e.illustration }}" class="size-img"  alt="">
+              <p class="textcenter" >{{ e.information}}</p>
+            </div>
+
+
+          <hr/> {% else %}
+            <div style="margin-top:1em">
+              <p class="textcenter">Il n'y à pas d'événement!</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8	col-xl-8">
+      <div style="height: 100%;" id="borderCadre" >
+        <div class="card card-bk" style="padding:.5em;height: 100%;">
+
+      {% block ul %}{% endblock %}
+      {% block contenu %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer ================================================== -->
+  <!--   <footer class="text-muted">
+
+    <div class="jumbotron footer " style="margin-bottom:0">
+    <div class="row vdivide">
+
+        <div class="col-12	col-sm-12	col-md-3	col-lg-6	col-xl-3 text-center">
+
+          <h5>ContacT</h5>
+          <div id="borderimg4">
+            <div style="margin-top:1em">
+
+              <p>
+                <i class="fas fa-envelope fa-lg" style="margin-right:1em"></i>
+                contact@legendarium.com</p>
+              <p>
+                <i class="fas fa-phone fa-lg" style="margin-right:1em"></i>
+                03 21 51 66 98</p>
+              <p>
+                <i class="fas fa-home fa-lg" style="margin-right:1em"></i>20 rue Emile Legrelle 62000 - ARRAS</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12	col-sm-12	col-md-6	col-lg-6	col-xl-3 text-center">
+          <h5>Nos partenaireS</h5>
+          <div id="borderimg4">
+
+            <table class="table table-dark">
+
+              <tbody>
+                <tr>
+                  <td>Fnac</td>
+                </tr>
+                <tr>
+                  <td>Lycée guy mollet</td>
+                </tr>
+                <tr>
+                  <td>T.mendes</td>
+                </tr>
+                <tr>
+                  <td>T.lefebvre</td>
+                </tr>
+                <tr>
+                  <td>Php my admin</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div class="col-12	col-sm-12	col-md-6	col-lg-6	col-xl-3 text-center">
+          <h5>HoraireS</h5>
+          <div id="borderimg4">
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th >Lundi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>14h00 - 19h00</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th >du mardi au samedi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10h00 - 12h00</td>
+                </tr>
+                <tr>
+                  <td>13h30 - 19h00</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-12	col-sm-12	col-md-6	col-lg-6	col-xl-3 text-center">
+          <h5>Ou nous trouveR</h5>
+          <div id="borderimg4">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2549.135783988592!2d2.775862015725558!3d50.289393179453405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dd4876806fd45f%3A0x9e2e05bc2b75caae!2s20+Rue+Emile+Legrelle%2C+62000+Arras!5e0!3m2!1sfr!2sfr!4v1557431147321!5m2!1sfr!2sfr"
+              width="100%"
+              height="200"
+              frameborder="0"
+              style="border:0"
+              allowfullscreen="allowfullscreen"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="col textcenter" style="margin-bottom:0">
+        <p style="font-size: 12px;">
+          Copyright © 2019 Mise en avant - Réalisation T.Mendes et T.Lefebvre
+        </p>
+      </div>
+
+    </div>
+
+  </footer>-->
+
+  <footer class="footer textcenter">
+    <div  id="borderCadre" style="max-width:1000px;  display: block;
+      margin-left: auto;
+      margin-right: auto;">
+      <p style="font-size: 15px;
+        ">
+        Copyright © 2019/2020 Mise en avant - Réalisation T.Mendes et T.Lefebvre
+      </p>
+    </div>
+
+  </footer>
+
+      {% endblock %}
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script>
+      window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+
+  </body>
+
+</html>
